@@ -15,6 +15,7 @@ interface DecodedToken extends JwtPayload {
 const verifyToken: RequestHandler = async (req, res, next) => {    try {
         //get the token;
         const token = req.cookies.token;
+        console.log("Incoming token:", token);
         if (!token) {
              res.status(401).json({ message: "Token missing, please login again" });
              return
@@ -25,6 +26,7 @@ const verifyToken: RequestHandler = async (req, res, next) => {    try {
         const decodedInfo = jwt.verify(token, process.env.SECRET_KEY!) as DecodedToken;
         //  If decoded info has `_id`, find that user
         if (decodedInfo && decodedInfo._id) {
+          //  console.log("Decoded token:", decodedInfo);
             const foundUser = (await User.findOne({ _id: decodedInfo._id }))as IUser
             // If foundUser is null, we store undefined:
             (<any>req).user = foundUser ?? undefined;

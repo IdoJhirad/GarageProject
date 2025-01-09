@@ -27,7 +27,7 @@ export const getGarages = async (req:Request, res:Response):Promise<void> => {
             return;
         }
         const savedGarages = userData.savedGarages;
-        res.status(200).json({ savedGarages });
+        res.status(201).json({ savedGarages });
     }catch (error) {
         console.log('Error fetching garages:', error)
         res.status(500).json({ message: 'Server error' });

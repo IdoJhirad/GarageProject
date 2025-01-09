@@ -50,38 +50,10 @@ The Garage Project is a two-part application involving backend development with 
 
 ---
 
-## Additional Guidelines
-- Write clean, readable, and well-organized code.
-- Provide clear instructions for running the project and tests.
 
----
-
-## Evaluation Criteria
-1. Code quality and clarity.
-2. Correct functionality according to the requirements.
-3. Proper implementation of validations.
-4. Test coverage and quality.
-5. Proper handling of asynchronous communication between the database and government API.
-6. Quality implementation of authentication (if included).
-
-
-
-## garages schema
-```angular2html
-{
-  "_id": "ObjectId",          // Unique garage ID
-  "name": "string",           // Garage name
-  "address": "string",        // Garage address
-  "contactNumber": "string",  // Garage contact details
-  "savedBy": ["ObjectId"],    // Array of user IDs who saved this garage
-  "createdAt": "Date",        // Creation date
-  "updatedAt": "Date"         // Last update date
-}
-
-```
 # Garage Project API Documentation
 
-## Version: 1.0
+## API Version: 1.0
 
 ### Description
 API documentation for Garage Project v1.0
@@ -108,9 +80,9 @@ API documentation for Garage Project v1.0
    - `201`: User registered successfully.
    - `400`: Invalid request.
      ```
-     name: { type: String, required: true },
-     email: { type: String, required: true, unique: true },
-     password: { type: String, required: true },
+     name:
+     email:
+     password: 
      ```
 ---
 
@@ -120,8 +92,84 @@ API documentation for Garage Project v1.0
 - **Responses:**
    - `200`: Login successful.
    - `401`: Invalid credentials.
+     ```
+     name:
+     email:
+     ```
 
 ---
+
+
+### **User APIs**
+
+#### **Get User Info**
+**GET** `/user/info`
+- **Summary:** Get user information.
+- **Responses:**
+   - `200`: User information retrieved.
+   - `401`: Unauthorized.
+
+---
+
+#### **Get User Garages**
+**GET** `/user/garages`
+- **Summary:** Get garages saved by user.
+- **Responses:**
+   - `200`: List of user's garages.
+   - `401`: Unauthorized.
+   ```
+      _id:Types.ObjectId;
+      mispar_mosah: number;
+      shem_mosah: string;
+      cod_sug_mosah: number;
+      sug_mosah: string;
+      ktovet: string;
+      yishuv: string;
+      telephone: string;
+      mikud: number;
+      miktzoa: string;
+      menahel_miktzoa: string;
+      rasham_havarot: number;
+      TESTIME: string;
+   ```
+
+
+---
+
+#### **Save Garage**
+**POST** `/user/garages`
+- **Summary:** Save a garage for the user.
+- **Responses:**
+   - `201`: Garage saved successfully.
+   - `400`: Invalid request.
+    ```
+      _id:Types.ObjectId;
+      mispar_mosah: number;
+      shem_mosah: string;
+      cod_sug_mosah: number;
+      sug_mosah: string;
+      ktovet: string;
+      yishuv: string;
+      telephone: string;
+      mikud: number;
+      miktzoa: string;
+      menahel_miktzoa: string;
+      rasham_havarot: number;
+      TESTIME: string;
+   ```
+
+---
+
+### **Global Garage APIs**
+
+#### **Get All Garages**
+**GET** `"/global-garages"`
+- **Summary:** Get all garages.
+- **Responses:**
+   - `200`: List of all garages.
+
+
+## Will be added in next update
 
 #### **Logout**
 **POST** `/auth/logout`
@@ -166,41 +214,3 @@ API documentation for Garage Project v1.0
    - `401`: Not authenticated.
 
 ---
-
-### **User APIs**
-
-#### **Get User Info**
-**GET** `/user/info`
-- **Summary:** Get user information.
-- **Responses:**
-   - `200`: User information retrieved.
-   - `401`: Unauthorized.
-
----
-
-#### **Get User Garages**
-**GET** `/user/garages`
-- **Summary:** Get garages saved by user.
-- **Responses:**
-   - `200`: List of user's garages.
-   - `401`: Unauthorized.
-
----
-
-#### **Save Garage**
-**POST** `/user/garages`
-- **Summary:** Save a garage for the user.
-- **Responses:**
-   - `201`: Garage saved successfully.
-   - `400`: Invalid request.
-
----
-
-### **Global Garage APIs**
-
-#### **Get All Garages**
-**GET** `"/global-garages"`
-- **Summary:** Get all garages.
-- **Responses:**
-   - `200`: List of all garages.
-

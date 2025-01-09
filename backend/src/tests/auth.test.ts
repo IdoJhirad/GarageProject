@@ -2,7 +2,8 @@ import request from 'supertest';
 import app from '../app'; // Adjust if needed to point to your Express app
 import User from '../db/user.model';
 import mongoose from "mongoose";
-import * as process from "node:process"; // Adjust if needed to point to your User model
+
+
 jest.setTimeout(20000);
 beforeAll(async () => {
     // Example: Use your real DB connection string or a test DB
