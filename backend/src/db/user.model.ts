@@ -11,7 +11,7 @@ export interface IUser extends Document {
     name:string;
     email: string;
     password: string;
-    savedGarages: Types.ObjectId[];
+    savedGarages: number[];
     // The signatures for our instance methods:
     encryptPassword(password: string): Promise<string>;
     validPassword(password: string): Promise<boolean>;
@@ -28,7 +28,7 @@ const UserSchema = new Schema<IUser>(
         name:  { type: String, required: true },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
-        savedGarages: [{type: mongoose.Schema.Types.ObjectId, ref:"Garage"}]
+        savedGarages: [{type: Number, ref:"Garage"}]
     },
     { timestamps: true }
 );

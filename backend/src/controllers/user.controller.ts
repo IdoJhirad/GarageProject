@@ -2,6 +2,7 @@ import {CookieOptions, Request, Response} from "express";
 import User, {IUser} from "../db/user.model";
 import Garage, { IGarage } from "../db/garage.model"; 
 import { sanitizeUser } from "../utiles/sanitizeUser";
+import mongoose from "mongoose";
 
 export const getInfo = async (req:Request, res:Response):Promise<void> => {
    try {
@@ -90,8 +91,19 @@ export const postGarages = async (req:Request, res:Response):Promise<void> => {
         await userData.save();
 
         res.status(200).json({ message: "Garages saved successfully"});
-    } catch(error) {
-        console.error("Error saving garages:", error);
+    } catch (error) {
+        if (error instanceof mongoose.Error.CastError) {
+            res.status(400).json({ message: `Invalid data: "${error.path}"` })
+            
+            return;
+        }
+
+        if (error instanceof Error) {
+            console.error("Error saving garages:", error.message);
+        } else {
+            console.error("Unexpected error:", error);
+        }
+
         res.status(500).json({ message: "Internal Server Error" });
     }
 }

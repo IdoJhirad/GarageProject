@@ -2,7 +2,7 @@ import mongoose, { Schema, Document, Model ,Types} from "mongoose";
 
 // Interface for the Garage model
 export interface IGarage extends Document {
-    _id:Types.ObjectId;
+    _id:number;
     mispar_mosah: number;
     shem_mosah: string;
     cod_sug_mosah: number;
@@ -24,7 +24,7 @@ interface IGarageModel extends Model<IGarage> {}
 // Define the Garage schema
 const GarageSchema = new Schema(
     {
-        _id:{type :Types.ObjectId,  required: true},
+        _id:{type: Number,  required: true},
         mispar_mosah:{type :Number,  required: true},
         shem_mosah: {type :String,  required: true},
         cod_sug_mosah: {type :Number,  required: true},
