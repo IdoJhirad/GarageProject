@@ -44,7 +44,7 @@ const GarageSchema = new Schema(
 );
 
 /**
- *  create the Garage model using mongoose. Model, providing our IUser interface
+ *  create the Garage model using mongoose. Model, providing our Igarage interface
  * and IGarageModel so TypeScript knows about the fields and methods.
  */
 const Garage:IGarageModel = mongoose.model<IGarage, IGarageModel>("Garage", GarageSchema);

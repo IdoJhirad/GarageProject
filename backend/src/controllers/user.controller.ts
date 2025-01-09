@@ -33,6 +33,11 @@ export const getGarages = async (req:Request, res:Response):Promise<void> => {
         res.status(500).json({ message: 'Server error' });
     }
 }
+
+
+/** 
+ * the post garage do an upsert operation  so if data chenged on the api it will chenge to all user when new user save it 
+ */
 export const postGarages = async (req:Request, res:Response):Promise<void> => {
     try{
         const userID = (<any>req).user._id;

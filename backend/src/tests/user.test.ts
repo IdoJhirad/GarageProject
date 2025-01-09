@@ -1,3 +1,9 @@
+/**
+ * Test for user controller
+ * Setup:  connection to the MongoDB , register a user log in and save the cookie
+ * Test garages are preloaded into the database for validating garage-related endpoints.
+ * After test User and GArage collection cleared and connection close
+ */
 import request from "supertest";
 import app from "../app";
 import mongoose from "mongoose";

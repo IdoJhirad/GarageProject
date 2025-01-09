@@ -16,7 +16,7 @@ afterAll(async () => {
 });
 describe('Auth API Tests', () => {
     beforeEach(async () => {
-        // Clear the database before each tests
+        // Clear the database before each 
         await User.deleteMany({});
     });
 
@@ -28,7 +28,7 @@ describe('Auth API Tests', () => {
                 password: 'securepassword',
             });
 
-            expect(response.status).toBe(201); // Success
+            expect(response.status).toBe(201);
             expect(response.body).toHaveProperty('message', 'User registered successfully');
         });
 
@@ -38,33 +38,31 @@ describe('Auth API Tests', () => {
                 password: 'securepassword',
             });
 
-            expect(response.status).toBe(400); // Bad Request
+            expect(response.status).toBe(400); 
             expect(response.body).toHaveProperty('message', 'Missing required field');
         });
 
         it('should fail registration with duplicate email', async () => {
-            // First registration
             await request(app).post('/api/v1/auth/register').send({
                 name: 'John Doe',
                 email: 'duplicate@example.com',
                 password: 'securepassword',
             });
 
-            // Attempt duplicate registration
             const response = await request(app).post('/api/v1/auth/register').send({
                 name: 'Jane Doe',
                 email: 'duplicate@example.com',
                 password: 'securepassword',
             });
 
-            expect(response.status).toBe(400); // Conflict
+            expect(response.status).toBe(400); 
             expect(response.body).toHaveProperty('message', 'Email already exists');
         });
     });
 
     describe('Login Endpoint', () => {
         beforeEach(async () => {
-            // Register a user to tests login
+          
             await request(app).post('/api/v1/auth/register').send({
                 name: 'Jane Doe',
                 email: 'jane@example.com',

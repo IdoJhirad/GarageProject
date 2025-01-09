@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import User, {IUser} from "../db/user.model";
 import {generateToken} from "../utiles/generateToken";
 import { sanitizeUser, SanitizedUser } from "../utiles/sanitizeUser";
+
 /**
  * Register a new user
  * @param req Request object
@@ -28,7 +29,6 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         }
 
         // 3) Create new user, but first hash the password
-        //    We can call UserSchema.methods directly on a new instance
         const userInstance = new User({ name, email });
 
         // Use the schema's encryptPassword method to hash
@@ -64,9 +64,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     try {
         const { email, password } = req.body;
 
-        // 1) Check if user is registered
-        //    We use .lean() if we want a plain object. However, for password validation,
-        //    we want to keep a mongoose document so we can use instance methods
+        // find the user and cast to IUser
         const userData = (await User.findOne({ email }))as IUser ;
         if (!userData) {
              res.status(404).json({ message: "User not found" });
@@ -78,7 +76,6 @@ export const login = async (req: Request, res: Response): Promise<void> => {
             return;
         }
 
-        // 3) Generate JWT token (for example)
         // 3) Sanitize user data
         const sanitizedUser: SanitizedUser = sanitizeUser(userData);
 
@@ -90,7 +87,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
             sameSite: 'lax', // Helps protect against CSRF attacks
             maxAge: 3600000, // 1 hour in milliseconds
         };
-
+        //attache the cookie
         res.cookie('token', token, cookieOptions);
         res.status(200).json({ message: "Logged in successfully",user:sanitizedUser });
     } catch (error) {
@@ -98,6 +95,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         res.status(500).json({ message: "Internal server error" });
     }
 };
+
 export const logout = async (req: Request, res: Response): Promise<void> => {
     res.status(200).json({message:"OK"});
 

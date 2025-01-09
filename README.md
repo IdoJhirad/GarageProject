@@ -50,7 +50,6 @@ The Garage Project is a two-part application involving backend development with 
 
 ---
 
-
 # Garage Project API Documentation
 
 ## API Version: 1.0
@@ -82,7 +81,7 @@ API documentation for Garage Project v1.0
      ```
      name:
      email:
-     password: 
+     password:
      ```
 ---
 
@@ -98,7 +97,6 @@ API documentation for Garage Project v1.0
      ```
 
 ---
-
 
 ### **User APIs**
 
@@ -117,7 +115,7 @@ API documentation for Garage Project v1.0
 - **Responses:**
    - `200`: List of user's garages.
    - `401`: Unauthorized.
-   ```
+     ```
       _id:Types.ObjectId;
       mispar_mosah: number;
       shem_mosah: string;
@@ -131,8 +129,7 @@ API documentation for Garage Project v1.0
       menahel_miktzoa: string;
       rasham_havarot: number;
       TESTIME: string;
-   ```
-
+     ```
 
 ---
 
@@ -156,18 +153,44 @@ API documentation for Garage Project v1.0
       menahel_miktzoa: string;
       rasham_havarot: number;
       TESTIME: string;
-   ```
+     ```
 
 ---
 
 ### **Global Garage APIs**
 
 #### **Get All Garages**
-**GET** `"/global-garages"`
-- **Summary:** Get all garages.
-- **Responses:**
-   - `200`: List of all garages.
+**GET** `/global-garages`
+- **Summary:** Retrieve a list of all garages with an optional limit on the number of results.
 
+- **Query Parameters:**
+  - **`limit`** (optional): The maximum number of garages to return.
+    - **Type:** `integer`
+    - **Default Value:** `20`
+    - **Example Usage:** `GET /global-garages?limit=10`
+
+- **Responses:**
+   - `200`: List of garages limited by the specified number or all garages if no limit is provided.
+     ```json
+     [
+         {
+             "_id": "603e2c7e8d3f2a5a1b3a1c8e",
+             "name": "Garage 1",
+             "address": "123 Main Street",
+             "city": "Sample City",
+             "phone": "123-456-7890"
+         },
+         {
+             "_id": "603e2c7e8d3f2a5a1b3a1c8f",
+             "name": "Garage 2",
+             "address": "456 Elm Street",
+             "city": "Another City",
+             "phone": "987-654-3210"
+         }
+     ]
+     ```
+
+---
 
 ## Will be added in next update
 
@@ -214,3 +237,42 @@ API documentation for Garage Project v1.0
    - `401`: Not authenticated.
 
 ---
+
+## Steps to Run the Backend
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/IdoJhirad/GarageProject
+   cd GarageProject/backend
+   ```
+
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Set Up Environment Variables:**
+   Create a `.env` file in the backend directory and add the following variables:
+   ```env
+   MONGO_URI=<your-mongodb-uri>
+   JWT_SECRET=<your-jwt-secret>
+   PORT=3000
+   # Token and cookie expiration settings
+   LOGIN_TOKEN_EXPIRATION="1h"  # Days
+   ```
+
+4. **Run the Backend:**
+   - For development:
+     ```bash
+     npm run dev
+     ```
+   - For production:
+     ```bash
+     npm start
+     ```
+
+5. **Run Tests:**
+   ```bash
+   npm run test
+   ```
+

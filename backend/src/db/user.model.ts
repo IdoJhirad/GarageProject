@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import Garage, { IGarage } from "./garage.model";
 /**
  * This interface extends the Mongoose Document interface, describing
- * our user document's shape (what fields it has) AND what instance
+ * the user document's shape (what fields it has) AND what instance
  * methods are available.
  */
 export interface IUser extends Document {
@@ -22,7 +22,6 @@ export interface IUser extends Document {
 interface IUserModel extends Model<IUser> {}
 /**
  * The UserSchema defines the structure and configuration of the 'User'
- * collection in MongoDB. We specify each field and whether it's required or unique.
  */
 const UserSchema = new Schema<IUser>(
     {
