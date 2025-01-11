@@ -32,7 +32,6 @@ export class LoginComponent {
       },
       //if fail
       error: (err)=>{
-        //TOFIX
         const errorMessage = err.error?.message || 'Login failed. Please try again.';
         alert(errorMessage);
         this.router.navigate(['/login']);

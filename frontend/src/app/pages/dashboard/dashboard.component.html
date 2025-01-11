@@ -1,1 +1,21 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+    <h1>Dashboard</h1>
+  
+    <!-- Saved Garages Table -->
+    <app-saved-garages [savedGarages]="savedGarages"></app-saved-garages>  
+    <!-- Multi-Select Dropdown -->
+    <app-multi-select-garages
+      (selectionChange)="onGlobalGaragesSelected($event)"
+    ></app-multi-select-garages>
+  
+    <!-- Add Button -->
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="selectedGlobalGarages.length === 0"
+      (click)="addSelectedGarages()"
+    >
+      Add Selected Garages
+    </button>
+  </div>
+  

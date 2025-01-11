@@ -1,0 +1,16 @@
+<div>
+    <h3>Select Garages from Global List</h3>
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Select Garages</mat-label>
+      <mat-select
+        [(ngModel)]="selectedGarages"
+        (selectionChange)="onSelectionChange()"
+        multiple
+      >
+        <mat-option *ngFor="let garage of externalGarages" [value]="garage">
+          {{ garage.shem_mosah }} - {{ garage.yishuv }} - ({{ garage.miktzoa }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  
