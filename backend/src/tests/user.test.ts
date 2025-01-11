@@ -17,7 +17,7 @@ describe("User Controller Tests", () => {
 
     const testGarages = [
         {
-            _id: 1, // Use integers for `_id`
+            _id: 1, 
             mispar_mosah: 123,
             shem_mosah: "Test Garage 1",
             cod_sug_mosah: 1,
@@ -31,7 +31,7 @@ describe("User Controller Tests", () => {
             rasham_havarot: 123,
         },
         {
-            _id: 2, // Use integers for `_id`
+            _id: 2,
             mispar_mosah: 456,
             shem_mosah: "Test Garage 2",
             cod_sug_mosah: 2,
@@ -130,7 +130,7 @@ describe("User Controller Tests", () => {
         it("should save new garages successfully", async () => {
             const newGarages = [
                 {
-                    _id: 3, // Use integer `_id`
+                    _id: 3, 
                     mispar_mosah: 789,
                     shem_mosah: "New Garage",
                     cod_sug_mosah: 3,

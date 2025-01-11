@@ -1,0 +1,48 @@
+<div class="register-container">
+    <h2>Register</h2>
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="name"
+        required
+        placeholder="Enter your name"
+      />
+      <div *ngIf="registerForm.submitted && !registerForm.controls['name']?.valid">
+        <small>Name is required.</small>
+      </div>
+  
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        required
+        placeholder="Enter your email"
+      />
+      <div *ngIf="registerForm.submitted && !registerForm.controls['email']?.valid">
+        <small>Email is required.</small>
+      </div>
+  
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        placeholder="Enter your password"
+      />
+      <div
+        *ngIf="registerForm.submitted && !registerForm.controls['password']?.valid"
+      >
+        <small>Password is required.</small>
+      </div>
+  
+      <button type="submit" [disabled]="!registerForm.valid">Register</button>
+    </form>
+  </div>
+  
