@@ -1,5 +1,5 @@
 <div class="dashboard-container">
-    <h1>Dashboard</h1>
+    <h1>welcome back {{userName}}</h1>
   
     <!-- Saved Garages Table -->
     <app-saved-garages [savedGarages]="savedGarages"></app-saved-garages>  
@@ -15,7 +15,7 @@
       [disabled]="selectedGlobalGarages.length === 0"
       (click)="addSelectedGarages()"
     >
-      Add Selected Garages
+      Add Garages
     </button>
   </div>
   

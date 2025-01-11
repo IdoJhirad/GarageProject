@@ -1,9 +1,54 @@
 <div>
-    <h2>Saved Garages</h2>
-    <ul>
-      <li *ngFor="let garage of savedGarages">
-        {{  garage.shem_mosah }} 
-      </li>
-    </ul>
-  </div>
-  
+  <h2>Your saved Garages</h2>
+  <table mat-table [dataSource]="savedGarages" class="mat-elevation-z8">
+
+    <!-- Garage Name Column -->
+    <ng-container matColumnDef="shem_mosah">
+      <th mat-header-cell *matHeaderCellDef> שם מוסך </th>
+      <td mat-cell *matCellDef="let garage"> {{ garage.shem_mosah }} </td>
+    </ng-container>
+
+    <!-- City Column -->
+    <ng-container matColumnDef="yishuv">
+      <th mat-header-cell *matHeaderCellDef> עיר </th>
+      <td mat-cell *matCellDef="let garage"> {{ garage.yishuv }} </td>
+    </ng-container>
+
+    <!-- Phone Column -->
+    <ng-container matColumnDef="telephone">
+      <th mat-header-cell *matHeaderCellDef> טלפון </th>
+      <td mat-cell *matCellDef="let garage"> {{ garage.telephone }} </td>
+    </ng-container>
+
+    <!-- Expandable Row Toggle -->
+    <ng-container matColumnDef="expand">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let garage">
+        <button mat-icon-button (click)="toggleRow(garage)">
+          <mat-icon>
+            {{ expandedElement === garage ? 'expand_less' : 'expand_more' }}
+          </mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Table Header -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    <!-- Table Rows -->
+    <tr mat-row *matRowDef="let garage; columns: displayedColumns;" (click)="toggleRow(garage)">
+    </tr>
+
+    <!-- Expanded Row -->
+    <tr *ngIf="expandedElement" class="expanded-row">
+      <td [attr.colspan]="displayedColumns.length">
+        <div class="expanded-content">
+          <p><strong>סוג:</strong> {{ expandedElement.sug_mosah }}</p>
+          <p><strong>מנהל מקצועי:</strong> {{ expandedElement.menahel_miktzoa }}</p>
+          <p><strong>כתובת:</strong> {{ expandedElement.ktovet }}</p>
+        </div>
+      </td>
+    </tr>
+
+  </table>
+</div>

@@ -13,11 +13,12 @@ import { GarageService } from '../../services/garage.service';
 export class DashboardComponent implements OnInit{
   selectedGlobalGarages: any[] = [];
   savedGarages: any[] = [];
-
+  userName: string | null = null;
   constructor(private garageService: GarageService) {}
 
   ngOnInit(): void {
     this.loadSavedGarages();
+    this.userName = localStorage.getItem('userName')
     }
 
   //load saved garages for the saved garages
