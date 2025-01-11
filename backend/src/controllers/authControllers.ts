@@ -117,6 +117,6 @@ export const changePasswordResetToken = async (req: Request, res: Response): Pro
 }
 
 export const checkAuth = async (req: Request, res: Response): Promise<void> => {
-    res.status(200).json({message:"OK"});
+    res.status(200).json({message:'User is logged in'});
 
 }

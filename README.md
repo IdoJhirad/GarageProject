@@ -97,6 +97,14 @@ API documentation for Garage Project v1.0
      ```
 
 ---
+#### **Check Auth**
+**GET** `/auth/check-auth`
+- **Summary:** Check if user is authenticated.
+- **Responses:**
+   - `200`: Authenticated.
+   - `401`: Not authenticated.
+
+---
 
 ### **User APIs**
 
@@ -229,14 +237,7 @@ API documentation for Garage Project v1.0
 
 ---
 
-#### **Check Auth**
-**GET** `/auth/check-auth`
-- **Summary:** Check if user is authenticated.
-- **Responses:**
-   - `200`: Authenticated.
-   - `401`: Not authenticated.
 
----
 
 ## Steps to Run the Backend
 

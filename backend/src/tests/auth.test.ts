@@ -69,6 +69,7 @@ describe('Auth API Tests', () => {
                 password: 'securepassword',
             });
         });
+        
 
         it('should log in successfully with valid credentials', async () => {
             const response = await request(app).post('/api/v1/auth/login').send({
