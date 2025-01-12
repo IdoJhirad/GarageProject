@@ -19,7 +19,7 @@ export class GarageService {
   }
 
   getGlobalGarages() :Observable<any> {
-    return this.http.get<any>(`${this.apiURL}/global-garages`,{withCredentials:true});
+    return this.http.get<any>(`${this.apiURL}/global-garages?limit=30`,{withCredentials:true});
   }
   addGarages(garages: any[]): Observable<any> {
     return this.http.post(`${this.apiURL}/user/garages`, { garages }, { withCredentials: true });

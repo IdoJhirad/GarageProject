@@ -1,6 +1,6 @@
 <div>
-  <h2>Your saved Garages</h2>
-  <table mat-table [dataSource]="savedGarages" class="mat-elevation-z8">
+  <h2>Your Saved Garages</h2>
+  <table mat-table [dataSource]="savedGarages" class="mat-elevation-z8 full-width-table">
 
     <!-- Garage Name Column -->
     <ng-container matColumnDef="shem_mosah">
@@ -20,35 +20,34 @@
       <td mat-cell *matCellDef="let garage"> {{ garage.telephone }} </td>
     </ng-container>
 
-    <!-- Expandable Row Toggle -->
-    <ng-container matColumnDef="expand">
-      <th mat-header-cell *matHeaderCellDef> </th>
-      <td mat-cell *matCellDef="let garage">
-        <button mat-icon-button (click)="toggleRow(garage)">
-          <mat-icon>
-            {{ expandedElement === garage ? 'expand_less' : 'expand_more' }}
-          </mat-icon>
-        </button>
-      </td>
+    <!-- Type Column -->
+    <ng-container matColumnDef="sug_mosah">
+      <th mat-header-cell *matHeaderCellDef> סוג מוסך </th>
+      <td mat-cell *matCellDef="let garage"> {{ garage.sug_mosah }} </td>
+    </ng-container>
+
+    <!-- Professional Manager Column -->
+    <ng-container matColumnDef="menahel_miktzoa">
+      <th mat-header-cell *matHeaderCellDef> מנהל מקצועי </th>
+      <td mat-cell *matCellDef="let garage"> {{ garage.menahel_miktzoa }} </td>
+    </ng-container>
+
+    <!-- Address Column -->
+    <ng-container matColumnDef="ktovet">
+      <th mat-header-cell *matHeaderCellDef> כתובת </th>
+      <td mat-cell *matCellDef="let garage"> {{ garage.ktovet }} </td>
+    </ng-container>
+
+    <!-- Specialization Column -->
+    <ng-container matColumnDef="miktzoa">
+      <th mat-header-cell *matHeaderCellDef> מקצוע </th>
+      <td mat-cell *matCellDef="let garage"> {{ garage.miktzoa }} </td>
     </ng-container>
 
     <!-- Table Header -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 
     <!-- Table Rows -->
-    <tr mat-row *matRowDef="let garage; columns: displayedColumns;" (click)="toggleRow(garage)">
-    </tr>
-
-    <!-- Expanded Row -->
-    <tr *ngIf="expandedElement" class="expanded-row">
-      <td [attr.colspan]="displayedColumns.length">
-        <div class="expanded-content">
-          <p><strong>סוג:</strong> {{ expandedElement.sug_mosah }}</p>
-          <p><strong>מנהל מקצועי:</strong> {{ expandedElement.menahel_miktzoa }}</p>
-          <p><strong>כתובת:</strong> {{ expandedElement.ktovet }}</p>
-        </div>
-      </td>
-    </tr>
-
+    <tr mat-row *matRowDef="let garage; columns: displayedColumns;"></tr>
   </table>
 </div>

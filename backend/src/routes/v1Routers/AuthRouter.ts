@@ -7,8 +7,8 @@ const router = express.Router();
 router
     .post("/register",authController.register)
     .post("/login", authController.login)
-    //TODO ADD
-    //.post("/logout", authController.logout)
+    .post("/logout", authController.logout)
+        //TODO ADD
     //.post("/reset-password", authController.resetPassword)
     //.post("/change-password", verifyToken ,authController.changePassword)
     //.post("/reset-password/confirm", authController.changePasswordResetToken)

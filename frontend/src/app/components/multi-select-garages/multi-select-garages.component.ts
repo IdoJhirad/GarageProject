@@ -49,5 +49,10 @@ export class MultiSelectGaragesComponent implements OnInit{
   onSelectionChange(): void {
     this.selectionChange.emit(this.selectedGarages);
   }
+  clearSelectedGarages(): void {
+    this.selectedGarages = [];
+    this.selectionChange.emit(this.selectedGarages); // Notify parent
+  }
+  
 
 }

@@ -1,33 +1,43 @@
 <div class="login-container">
-    <h2>Login</h2>
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-      <label for="email">Email:</label>
+  <h2>Login</h2>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <!-- Email Field -->
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Email</mat-label>
       <input
+        matInput
         type="email"
-        id="email"
         name="email"
         [(ngModel)]="email"
         required
         placeholder="Enter your email"
+        #emailInput="ngModel"
       />
-      <div *ngIf="loginForm.submitted && !loginForm.controls['email']?.valid">
-        <small>Email is required.</small>
-      </div>
-  
-      <label for="password">Password:</label>
+      <mat-error *ngIf="loginForm.submitted && emailInput.invalid">
+        Email is required.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Password Field -->
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Password</mat-label>
       <input
+        matInput
         type="password"
-        id="password"
         name="password"
         [(ngModel)]="password"
         required
         placeholder="Enter your password"
+        #passwordInput="ngModel"
       />
-      <div *ngIf="loginForm.submitted && !loginForm.controls['password']?.valid">
-        <small>Password is required.</small>
-      </div>
-  
-      <button type="submit" [disabled]="!loginForm.valid">Login</button>
-    </form>
-  </div>
-  
+      <mat-error *ngIf="loginForm.submitted && passwordInput.invalid">
+        Password is required.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">
+      Login
+    </button>
+  </form>
+</div>

@@ -19,7 +19,7 @@ app.use(cors({
     origin: process.env.ORIGIN,
     credentials: true,
     exposedHeaders: ['X-Total-Count'],
-    methods: ['GET', 'POST', 'PATCH', 'DELETE']
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
 }));
 // Parses incoming JSON request bodies
 app.use(express.json());

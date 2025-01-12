@@ -2,11 +2,19 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router'; // Import Router
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 //import the auth service fot auth realted api calls
 import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, 
+    FormsModule,   
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

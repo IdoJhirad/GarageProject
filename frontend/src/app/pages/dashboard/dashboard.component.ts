@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SavedGaragesComponent } from '../../components/saved-garages/saved-garages.component';
 import { MultiSelectGaragesComponent } from '../../components/multi-select-garages/multi-select-garages.component';
 import { GarageService } from '../../services/garage.service';
-
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-dashboard',
-  imports: [SavedGaragesComponent, MultiSelectGaragesComponent],
+  imports: [SavedGaragesComponent, MultiSelectGaragesComponent, MatIconModule,MatCardModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -14,7 +15,10 @@ export class DashboardComponent implements OnInit{
   selectedGlobalGarages: any[] = [];
   savedGarages: any[] = [];
   userName: string | null = null;
-  constructor(private garageService: GarageService) {}
+  constructor(private garageService: GarageService, private authService: AuthService){}
+
+  @ViewChild(MultiSelectGaragesComponent) multiSelectGaragesComponent!: MultiSelectGaragesComponent;  
+
 
   ngOnInit(): void {
     this.loadSavedGarages();
@@ -47,11 +51,17 @@ export class DashboardComponent implements OnInit{
           console.log('Garages added successfully!');
           this.selectedGlobalGarages = [];
           this.loadSavedGarages();
+          // Reset the multi-select dropdown
+          this.multiSelectGaragesComponent.clearSelectedGarages();
+        
         },
         error: (err: any) => {
           console.error('Error adding garages:', err);
         },
       })
     }
+  }
+  logout(): void {
+    this.authService.logOut();
   }
 }

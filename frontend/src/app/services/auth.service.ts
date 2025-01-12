@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, Observable } from 'rxjs';
-
+import { catchError, map, Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiURL = 'http://localhost:3000/api/v1'
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
   login(email: string, password:string): Observable<any> {
     const body = {email, password};
@@ -23,7 +23,11 @@ export class AuthService {
       { withCredentials: true, 
         observe: 'response' }).pipe(
       map((response) => response.status === 200 ),
-      catchError(()=>[false])
-    );
+      catchError(()=>of(false)) );
+  }
+  logOut():void{
+     this.http.post(`${this.apiURL}/auth/logout`,{withCredentials:true})
+    localStorage.removeItem('userName');
+    this.router.navigate(['/login']);
   }
 }

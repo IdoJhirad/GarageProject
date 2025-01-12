@@ -1,15 +1,35 @@
 <div class="dashboard-container">
-    <h1>welcome back {{userName}}</h1>
-  
-    <!-- Saved Garages Table -->
-    <app-saved-garages [savedGarages]="savedGarages"></app-saved-garages>  
-    <!-- Multi-Select Dropdown -->
-    <app-multi-select-garages
-      (selectionChange)="onGlobalGaragesSelected($event)"
-    ></app-multi-select-garages>
-  
-    <!-- Add Button -->
+  <button
+  type="button"
+  mat-raised-button
+  color="warn"
+  (click)="logout()"
+  class="logout-button"
+>
+  Logout
+</button>
+  <h1 class="welcome-text">Welcome back, {{ userName }}</h1>
+
+  <!-- Saved Garages Section -->
+  <mat-card class="saved-garages-card">
+    <mat-card-content>
+      <app-saved-garages [savedGarages]="savedGarages"></app-saved-garages>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Multi-Select Dropdown Section -->
+  <mat-card class="multi-select-card">
+    <mat-card-content>
+      <app-multi-select-garages
+        (selectionChange)="onGlobalGaragesSelected($event)"
+      ></app-multi-select-garages>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Add Button Section -->
+  <div class="button-container">
     <button
+      type="button"
       mat-raised-button
       color="primary"
       [disabled]="selectedGlobalGarages.length === 0"
@@ -18,4 +38,4 @@
       Add Garages
     </button>
   </div>
-  
+</div>
